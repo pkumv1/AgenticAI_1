@@ -2,8 +2,16 @@
 
 🤖 An intelligent PDF assistant that uses LangChain agents and GROQ's Llama 3 model to answer questions about uploaded PDF documents.
 
+## 🚨 Important: Deployment Issues
+
+Due to memory constraints on free hosting tiers, we've created two versions:
+
+1. **Full Version (`app.py`)** - Uses LangChain, FAISS, and embeddings (requires more memory)
+2. **Lite Version (`app_lite.py`)** - Direct GROQ API calls, no vector database (works on free tier)
+
 ## Features
 
+### Full Version Features:
 - 📄 PDF upload and processing
 - 🤖 Agentic AI with LangChain
 - 🧠 Powered by GROQ's Llama 3 70B model
@@ -11,36 +19,39 @@
 - 📚 FAISS vector store for efficient search
 - 🔑 No .env file needed - API key input in UI
 
+### Lite Version Features:
+- 📄 PDF upload and text extraction
+- 🧠 Direct GROQ API integration
+- 💬 Simple Q&A interface
+- 💡 Low memory footprint
+- 🔑 No .env file needed - API key input in UI
+
 ## Live Demo
 
-- **Streamlit Cloud**: [Coming soon]
-- **Render**: [Coming soon]
+- **Streamlit Cloud**: [Deploy Full Version]
+- **Render (Free Tier)**: Uses Lite Version due to memory constraints
 
 ## Local Setup
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/pkumv1/AgenticAI_1.git
-   cd AgenticAI_1
-   ```
+### For Full Version:
+```bash
+git clone https://github.com/pkumv1/AgenticAI_1.git
+cd AgenticAI_1
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Run the app:
-   ```bash
-   streamlit run app.py
-   ```
-
-4. Open your browser and go to `http://localhost:8501`
-
-5. Enter your GROQ API key in the sidebar (get one from [console.groq.com](https://console.groq.com/keys))
+### For Lite Version (Recommended for free hosting):
+```bash
+git clone https://github.com/pkumv1/AgenticAI_1.git
+cd AgenticAI_1
+pip install streamlit groq pypdf
+streamlit run app_lite.py
+```
 
 ## Deployment
 
-### Deploy to Streamlit Cloud
+### Deploy to Streamlit Cloud (Recommended for Full Version)
 
 1. Fork this repository
 2. Go to [share.streamlit.io](https://share.streamlit.io)
@@ -50,62 +61,69 @@
 6. Set branch as `main` and main file as `app.py`
 7. Click "Deploy!"
 
-### Deploy to Render
+### Deploy to Render (Uses Lite Version)
 
 1. Fork this repository
 2. Go to [render.com](https://render.com)
 3. Click "New +" → "Web Service"
 4. Connect your GitHub account
 5. Select `pkumv1/AgenticAI_1` repository
-6. Use the following settings:
-   - **Environment**: Python
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`
-7. Click "Create Web Service"
-
-### Deploy to Vercel (Not Recommended)
-
-Vercel is not ideal for Streamlit apps. Use Streamlit Cloud or Render instead.
+6. The lite version will be automatically deployed
 
 ## Usage
 
 1. Enter your GROQ API key in the sidebar
 2. Upload a PDF file
-3. Wait for the agent to process the document
+3. Click "Read PDF" (Lite) or "Process PDF" (Full)
 4. Ask questions about the PDF content
-5. Get AI-powered answers based on the document
+5. Get AI-powered answers
+
+## Memory Requirements
+
+- **Full Version**: ~2GB RAM (due to embeddings and FAISS)
+- **Lite Version**: ~256MB RAM (works on free tiers)
+
+## Get GROQ API Key
+
+1. Visit [console.groq.com](https://console.groq.com/keys)
+2. Sign up or log in
+3. Create a new API key
+4. Use it in the app
 
 ## Project Structure
 
 ```
 AgenticAI_1/
-├── app.py                 # Main Streamlit application
-├── requirements.txt       # Python dependencies
+├── app.py                 # Full version with LangChain
+├── app_lite.py           # Lite version for free hosting
+├── requirements.txt       # Full dependencies
+├── requirements_minimal.txt # Minimal dependencies
 ├── render.yaml           # Render deployment config
+├── start.sh             # Startup script (full)
+├── start_lite.sh        # Startup script (lite)
 ├── .streamlit/
 │   └── config.toml      # Streamlit configuration
-├── packages.txt         # System dependencies for Streamlit Cloud
 └── README.md           # This file
 ```
 
 ## Other Files in Repository
 
-- `Chatbot.py` - Basic chatbot implementation
-- `Flighthotel.py` - Flight and hotel booking agent
-- `Hotel_RAG.py` - Hotel booking with RAG
-- `Hotel_SQL.py` - Hotel booking with SQL database
-- `Hotelemail.py` - Hotel email agent
-- `Multiagent.py` - Multi-agent system example
-- `Phiagent.py` - Phi model agent
-- `langgraph.py` - LangGraph implementation
+- Various agent examples (Chatbot.py, Hotel_RAG.py, etc.)
+- These are standalone examples not used in the main app
 
 ## Technologies Used
 
+### Full Version:
 - **Streamlit** - Web UI framework
 - **LangChain** - Agent and chain orchestration
 - **GROQ** - LLM API (Llama 3 70B)
 - **FAISS** - Vector database
 - **HuggingFace** - Embeddings
+- **PyPDF** - PDF processing
+
+### Lite Version:
+- **Streamlit** - Web UI framework
+- **GROQ** - LLM API (Llama 3 8B)
 - **PyPDF** - PDF processing
 
 ## Contributing

@@ -4,8 +4,8 @@ services:
     runtime: python
     buildCommand: |
       pip install --no-cache-dir streamlit groq pypdf
-      chmod +x start.sh
-    startCommand: ./start.sh
+      chmod +x start_lite.sh
+    startCommand: ./start_lite.sh
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
