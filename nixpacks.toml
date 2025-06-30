@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["python310", "gcc"]
+
+[phases.install]
+cmds = ["pip install streamlit groq pypdf"]
+
+[start]
+cmd = "streamlit run app_lite.py --server.port=$PORT --server.address=0.0.0.0"
