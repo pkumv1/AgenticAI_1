@@ -5,8 +5,8 @@ services:
     buildCommand: |
       python --version
       pip install --upgrade pip
-      pip install streamlit==1.30.0
-    startCommand: python -m streamlit run app_test.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true --browser.gatherUsageStats=false
+      pip install streamlit==1.30.0 groq==0.5.0 pypdf==4.0.0
+    startCommand: python run_streamlit.py
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
