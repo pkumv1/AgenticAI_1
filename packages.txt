@@ -1,0 +1,12 @@
+# System dependencies for Streamlit Cloud
+# These are installed using apt-get
+libgl1-mesa-glx
+libglib2.0-0
+libsm6
+libxext6
+libxrender1
+libgomp1
+libxinerama6
+libxcursor1
+libxrandr2
+libxi6
