@@ -2,10 +2,8 @@ services:
   - type: web
     name: agentic-ai-pdf-assistant
     runtime: python
-    buildCommand: |
-      pip install --no-cache-dir streamlit groq pypdf
-      chmod +x start_lite.sh
-    startCommand: ./start_lite.sh
+    buildCommand: pip install streamlit groq pypdf
+    startCommand: streamlit run app_lite.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
