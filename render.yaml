@@ -2,13 +2,12 @@ services:
   - type: web
     name: agentic-ai-pdf-assistant
     runtime: python
-    buildCommand: pip install --upgrade pip && pip install streamlit==1.30.0 groq==0.5.0 pypdf==4.0.0
-    startCommand: python -m streamlit run app_lite.py --server.port=$PORT --server.address=0.0.0.0
+    buildCommand: |
+      python --version
+      pip install --upgrade pip
+      pip install streamlit==1.30.0
+    startCommand: python -m streamlit run app_test.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true --browser.gatherUsageStats=false
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
-      - key: STREAMLIT_SERVER_HEADLESS
-        value: true
-      - key: STREAMLIT_BROWSER_GATHER_USAGE_STATS
-        value: false
     autoDeploy: true
