@@ -1,0 +1,2 @@
+start_lite.sh text eol=lf
+start.sh text eol=lf
