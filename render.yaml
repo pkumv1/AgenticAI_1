@@ -3,7 +3,7 @@ services:
     name: agentic-ai-pdf-assistant
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true --browser.serverAddress localhost --server.enableCORS false --server.enableXsrfProtection false
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
